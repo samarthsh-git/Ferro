@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferro HQ — Highly Selective Account-Based Outbound for SaaS</title>
+    <meta name="description" content="Ferro HQ executes highly researched, 1-on-1 outbound campaigns that place qualified, high-intent prospects directly onto your calendar.">
+
+    <!-- Google Fonts: DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ferro: {
+                            dark: '#161512',
+                            orange: '#ff4d12',
+                            light: '#fdfdfd',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        'tightest': '-0.06em',
+                        'hero': '-0.04em',
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style>
+        /* ── Core Resets & Scroll ── */
+        html {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background-color: #fdfdfd;
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            background-color: #fdfdfd;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        html.menu-open,
+        html.menu-open body {
+            overflow: hidden;
+            touch-action: none;
+        }
+        ::selection {
+            background-color: #000;
+            color: #fff;
+        }
+        *:focus-visible {
+            outline: 2px solid #ff4d12;
+            outline-offset: 4px;
+        }
+
+        /* ── Premium Noise Texture Overlay ── */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* ── Sitewide Cursor Glow ── */
+        .glow-wrap {
+            position: fixed; inset: 0; pointer-events: none; z-index: 9998;
+            mix-blend-mode: multiply;
+        }
+        .glow-bg {
+            position: absolute; inset: 0;
+            background: radial-gradient(600px circle at var(--gx, 50%) var(--gy, 50%), rgba(255,77,18,0.12), transparent 65%);
+            will-change: background;
+        }
+
+        /* ── Hero Grid (Hero Only) ── */
+        .grid-wrap {
+            position: fixed; inset: 0; pointer-events: none; z-index: -1;
+            mask-image: linear-gradient(to bottom, transparent, #000 7%, #000 52%, transparent 96%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, #000 7%, #000 52%, transparent 96%);
+        }
+        .grid-bg {
+            position: absolute; inset: -100px;
+            background-image: linear-gradient(to right, rgba(22,21,18,.075) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(22,21,18,.075) 1px, transparent 1px);
+            background-size: 56px 56px;
+            will-change: transform;
+        }
+
+        /* ── Elegant Animated Underline ── */
+        .hover-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: currentColor;
+            transform-origin: bottom right;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .hover-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* ── Premium Button Sweep Animation ── */
+        .btn-sweep {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            border: 1px solid var(--sweep-border, #000);
+        }
+        .btn-sweep::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--sweep-bg, #fff);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: 100% 50%;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .btn-sweep:hover {
+            color: var(--sweep-text, #000) !important;
+        }
+        .btn-sweep:hover::before {
+            transform: scaleX(1);
+            transform-origin: 0% 50%;
+        }
+
+        .btn-outline {
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+        .btn-outline:hover {
+            background-color: #000;
+            color: #fff;
+            transform: scale(1.02);
+        }
+        .btn-outline:active {
+            transform: scale(0.98);
+        }
+
+        /* ── Scroll Reveal Animations ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Process Nodes ── */
+        .process-node {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid #d1d5db;
+            background: white;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .process-node.active {
+            border-color: #000;
+            background-color: #000;
+            transform: scale(1.35);
+            box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
+        }
+
+        /* ── Mobile Menu ── */
+        .mobile-menu {
+            transform: translateY(-16px);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ── Sketch SVG Containers ── */
+        .sketch-container {
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        /* Hide all sketch paths by default to prevent flash-of-unstyled-stroke */
+        .sketch-trigger svg {
+            visibility: hidden;
+        }
+        .sketch-trigger.ready svg {
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="text-black font-sans relative">
+
+    <!-- Premium Texture Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Sitewide Cursor Glow -->
+    <div class="glow-wrap">
+        <div class="glow-bg" id="glowBg"></div>
+    </div>
+
+    <!-- Interactive Grid Background -->
+    <div class="grid-wrap" id="gridWrap">
+        <div class="grid-bg" id="gridBg"></div>
+    </div>
+
+    <div class="relative z-10 flex flex-col">
+
+        <!-- ════════════════════════════════════════════════════════════
+             FLOATING RIBBON NAVBAR
+        ════════════════════════════════════════════════════════════ -->
+        <nav class="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[96%] max-w-7xl bg-white/90 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-gray-100 rounded-full px-6 lg:px-8 h-16 md:h-[4.5rem] z-[9000] flex items-center transition-all duration-300" id="navbar">
+            <div class="flex items-center justify-between w-full relative">
+                <!-- Logo -->
+                <div class="flex-1 flex justify-start items-center relative">
+                    <a href="#" class="nav-link flex-shrink-0 block rounded-full focus-visible:outline-2 focus-visible:outline-ferro-orange">
+                        <img src="./ferro_logo-removebg-preview.png" alt="Ferro HQ" class="h-16 md:h-24 w-auto drop-shadow-sm" id="nav-logo">
+                    </a>
+                </div>
+
+                <!-- Absolute Centered Links -->
+                <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-10">
+                    <a href="#about" class="nav-link hover-underline text-base font-extrabold text-black">About</a>
+                    <a href="#process" class="nav-link hover-underline text-base font-extrabold text-black">Process</a>
+                    <a href="#guarantee" class="nav-link hover-underline text-base font-extrabold text-black">Guarantee</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden md:flex flex-1 justify-end items-center">
+                    <a href="#book-audit" class="nav-link bg-black text-white text-sm font-bold px-8 py-3.5 rounded-full transition-transform duration-300 ease-out hover:scale-[1.03]" id="nav-cta">
+                        Book an Audit
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <div class="md:hidden flex justify-end items-center flex-1">
+                    <button id="menu-toggle" class="w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-full focus-visible:outline-2 focus-visible:outline-ferro-orange" aria-label="Toggle menu">
+                        <span class="block w-6 h-[2px] bg-black transition-all duration-300" id="bar-1"></span>
+                        <span class="block w-6 h-[2px] bg-black transition-all duration-300" id="bar-2"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Backdrop -->
+        <div id="menu-backdrop" class="md:hidden fixed inset-0 bg-black/10 backdrop-blur-sm z-[8000] opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed top-24 left-0 right-0 mx-auto w-[92%] max-w-sm bg-white/95 backdrop-blur-2xl border border-gray-100 shadow-xl rounded-3xl px-6 py-8 z-[8500]">
+            <div class="flex flex-col gap-6 items-center">
+                <a href="#about" class="mobile-link text-lg font-extrabold text-black hover-underline">About</a>
+                <a href="#process" class="mobile-link text-lg font-extrabold text-black hover-underline">Process</a>
+                <a href="#guarantee" class="mobile-link text-lg font-extrabold text-black hover-underline">Guarantee</a>
+                <a href="#book-audit" class="mobile-link btn-sweep bg-black text-white text-base font-bold px-8 py-3.5 rounded-full text-center mt-2 w-full">Book an Audit</a>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════════════════════
+             HERO SECTION
+        ════════════════════════════════════════════════════════════ -->
+        <section id="hero" class="min-h-screen flex items-center justify-center px-6 lg:px-16 relative bg-transparent overflow-hidden pt-10">
+
+            <div class="max-w-5xl mx-auto text-center w-full relative z-10">
+                <h1 class="reveal text-[clamp(1.8rem,7.5vw,2.75rem)] sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-hero mb-8 md:mb-10 text-transparent bg-clip-text bg-gradient-to-b from-black to-gray-800">
+                    <span class="whitespace-nowrap">You want <span class="sketch-container text-ferro-orange sketch-trigger" style="--sd: 0.2s; padding: 0 0.15em;">pipeline<svg class="absolute pointer-events-none" style="top: -15%; left: -2%; width: 104%; height: 130%; stroke: currentColor; fill: none; overflow: visible;" viewBox="0 0 240 100" preserveAspectRatio="none"><path stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M122 9 C171 5 224 20 227 47 C230 75 183 94 121 94 C61 94 12 79 11 51 C10 24 59 9 118 8 C133 7.7 148 9 161 12"/></svg></span>.</span><br/>We build it.
+                </h1>
+                <p class="reveal text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium leading-[1.15] tracking-tight text-gray-500 mb-12 md:mb-14" style="transition-delay: 0.1s;">
+                    We curate conversations with your most valuable buyers.
+                </p>
+                <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4" style="transition-delay: 0.2s;">
+                    <a href="#process" class="btn-sweep px-8 py-3.5 rounded-full text-black text-sm font-bold bg-white/20 backdrop-blur-md w-full sm:w-auto text-center" style="--sweep-bg: #000; --sweep-text: #fff; --sweep-border: #000;">
+                        See The Process
+                    </a>
+                    <a href="#book-audit" class="btn-sweep px-8 py-3.5 rounded-full bg-black text-white text-sm font-bold w-full sm:w-auto text-center">
+                        Book an Audit
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ════════════════════════════════════════════════════════════
+             ABOUT / THE PROBLEM
+        ════════════════════════════════════════════════════════════ -->
+        <section id="about" class="min-h-[75vh] md:min-h-screen flex items-center px-6 lg:px-16 bg-white border-t border-gray-100 relative z-10 py-24 lg:py-32">
+            <div class="max-w-6xl mx-auto w-full">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="reveal text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tightest mb-10 md:mb-14">
+                        We execute <span class="sketch-container sketch-trigger" style="--sd: 0.1s;">highly researched<!-- Properly positioned underline sitting below the text baseline --><svg class="absolute pointer-events-none bottom-[-11px] md:bottom-[-8px]" style="left: 0; width: 100%; height: 24px; stroke: var(--ferro-orange, #ff4d12); fill: none;" viewBox="0 0 200 40" preserveAspectRatio="none"><path stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 5 20 Q 100 8 195 24"/><path stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity="0.6" d="M 15 28 Q 100 16 185 26"/></svg></span>, 1-on-1 outbound campaigns that place qualified, high-intent prospects directly onto your calendar.
+                    </h2>
+                    <div class="reveal flex flex-col sm:flex-row items-center justify-center sm:gap-10" style="transition-delay: 0.15s;">
+                        <p class="text-xl md:text-2xl text-gray-500 font-bold leading-relaxed">No automated spam.</p>
+                        <p class="text-xl md:text-2xl text-gray-500 font-bold leading-relaxed">No burnt domains.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ════════════════════════════════════════════════════════════
+             THE MECHANISM / PROCESS
+        ════════════════════════════════════════════════════════════ -->
+        <section id="process" class="min-h-screen flex items-center px-6 lg:px-16 border-t border-gray-100 bg-white relative z-10 py-24 lg:py-32">
+            <div class="max-w-6xl mx-auto w-full">
+
+                <div class="md:w-5/12 reveal">
+                    <div class="process-node mb-6" data-node="0"></div>
+                    <h3 class="text-xl md:text-3xl font-bold tracking-tight mb-4">Deep Account Research</h3>
+                    <p class="text-base md:text-lg text-gray-500 leading-relaxed font-medium">
+                        We do not use generic scraped lists.<br>
+                        We identify highly targeted accounts based on recent funding, hiring trends, and precise tech-stack data.<br>
+                        Chosen specifically for you.
+                    </p>
+                </div>
+
+                <div class="hidden md:block my-6" style="height: 100px;">
+                    <svg class="w-full h-full curve-svg" viewBox="0 0 1000 400" preserveAspectRatio="none" fill="none">
+                        <path class="curve-path" d="M 30,20 C 30,300 970,100 970,380" stroke="#e0e0e0" stroke-width="2" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+                    </svg>
+                </div>
+                <div class="md:hidden py-4">
+                    <div class="w-[2px] h-12 bg-gray-200" style="margin-left: 6px;"></div>
+                </div>
+
+                <div class="md:w-5/12 md:ml-auto md:text-right reveal">
+                    <div class="process-node mb-6 md:ml-auto" data-node="1"></div>
+                    <h3 class="text-xl md:text-3xl font-bold tracking-tight mb-4">Bespoke Copywriting</h3>
+                    <p class="text-base md:text-lg text-gray-500 leading-relaxed font-medium">
+                        Every outreach message is manually crafted.<br>
+                        We reference real, company-specific pain points to initiate peer-to-peer conversations, not generic sales pitches.
+                    </p>
+                </div>
+
+                <div class="hidden md:block my-6" style="height: 100px;">
+                    <svg class="w-full h-full curve-svg" viewBox="0 0 1000 400" preserveAspectRatio="none" fill="none">
+                        <path class="curve-path" d="M 970,20 C 970,300 30,100 30,380" stroke="#e0e0e0" stroke-width="2" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+                    </svg>
+                </div>
+                <div class="md:hidden py-4">
+                    <div class="w-[2px] h-12 bg-gray-200" style="margin-left: 6px;"></div>
+                </div>
+
+                <div class="md:w-5/12 reveal">
+                    <div class="process-node mb-6" data-node="2"></div>
+                    <h3 class="text-xl md:text-3xl font-bold tracking-tight mb-4">Flawless Deliverability</h3>
+                    <p class="text-base md:text-lg text-gray-500 leading-relaxed font-medium">
+                        We build and manage a dedicated sending infrastructure.<br>
+                        Your primary domain is protected, and our outreach lands exclusively in the primary inbox.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ════════════════════════════════════════════════════════════
+             THE GUARANTEE
+        ════════════════════════════════════════════════════════════ -->
+        <section id="guarantee" class="min-h-screen flex items-center px-6 lg:px-16 bg-[#161512] text-white relative z-10 py-24 lg:py-32">
+            
+            <div class="max-w-6xl mx-auto w-full relative z-30">
+                <div class="max-w-4xl">
+                    <h2 class="reveal text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tightest mb-10 md:mb-14 text-white">
+                        The <span class="sketch-container text-ferro-orange sketch-trigger" style="--sd: 0.1s;">Guarantee<svg class="absolute pointer-events-none" style="bottom: -12px; left: -2%; width: 104%; height: 24px; stroke: currentColor; fill: none;" viewBox="0 0 200 40" preserveAspectRatio="none"><path stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 5 20 Q 100 5 195 25"/><path stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity="0.6" d="M 10 30 Q 100 15 185 28"/></svg></span>
+                    </h2>
+                    <p class="reveal text-xl md:text-2xl text-gray-300 font-medium leading-relaxed" style="transition-delay: 0.1s;">
+                        We only partner with organisations who have a validated product and a clear Ideal Customer Profile (ICP). Because of this strict qualification process, we guarantee our execution. If we do not generate a minimum of <span class="text-white font-bold">10 qualified sales meetings</span> in our first 90 days, we waive our performance fee and work for free until the target is hit.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ════════════════════════════════════════════════════════════
+             BOOK AN AUDIT — Contact Form
+        ════════════════════════════════════════════════════════════ -->
+        <section id="book-audit" class="flex items-center px-6 lg:px-16 bg-white relative z-10 py-24 lg:py-32">
+            
+            <div class="max-w-6xl mx-auto w-full relative z-30">
+                <div class="max-w-2xl">
+
+                    <h2 class="reveal text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tightest mb-6">
+                        <span class="sketch-container text-ferro-orange sketch-trigger" style="--sd: 0.1s; padding: 0 0.3em;">Book an Audit<svg class="absolute pointer-events-none" style="top: -18%; left: -6%; width: 112%; height: 140%; stroke: currentColor; fill: none; overflow: visible;" viewBox="0 0 540 100" preserveAspectRatio="none"><path stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M274 9 C384 5 504 20 510 47 C517 75 411 94 272 94 C137 94 27 79 24 51 C22 24 132 9 265 8 C299 7.7 333 9 362 12"/></svg></span>
+                    </h2>
+                    <p class="reveal text-lg md:text-xl text-gray-500 font-medium mb-14" style="transition-delay: 0.1s;">
+                        Tell us about your business. We will get back to you within 24 hours.
+                    </p>
+
+                    <form id="audit-form" class="reveal space-y-10" style="transition-delay: 0.15s;">
+                        <input type="hidden" name="access_key" value="113f0311-64c1-4168-8a9c-f8abb0c50362">
+
+                        <div>
+                            <label for="form-name" class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Full Name</label>
+                            <input type="text" id="form-name" name="name" required placeholder="Jane Smith"
+                                   class="w-full bg-transparent border-b border-gray-200 py-3 text-lg font-bold text-black placeholder-gray-300 focus:outline-none focus:border-ferro-orange transition-colors duration-300">
+                        </div>
+
+                        <div>
+                            <label for="form-email" class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Work Email</label>
+                            <input type="email" id="form-email" name="email" required placeholder="jane@company.com"
+                                   class="w-full bg-transparent border-b border-gray-200 py-3 text-lg font-bold text-black placeholder-gray-300 focus:outline-none focus:border-ferro-orange transition-colors duration-300">
+                        </div>
+
+                        <div>
+                            <label for="form-company" class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Company</label>
+                            <input type="text" id="form-company" name="company" required placeholder="Acme Inc."
+                                   class="w-full bg-transparent border-b border-gray-200 py-3 text-lg font-bold text-black placeholder-gray-300 focus:outline-none focus:border-ferro-orange transition-colors duration-300">
+                        </div>
+
+                        <div>
+                            <label for="form-website" class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Website</label>
+                            <input type="url" id="form-website" name="website" placeholder="https://company.com"
+                                   class="w-full bg-transparent border-b border-gray-200 py-3 text-lg font-bold text-black placeholder-gray-300 focus:outline-none focus:border-ferro-orange transition-colors duration-300">
+                        </div>
+
+                        <div>
+                            <label for="form-message" class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Tell us about your ICP and goals</label>
+                            <textarea id="form-message" name="message" rows="3" required placeholder="We sell to VP-level buyers at Series B+ SaaS companies…"
+                                      class="w-full bg-transparent border-b border-gray-200 py-3 text-lg font-bold text-black placeholder-gray-300 focus:outline-none focus:border-ferro-orange transition-colors duration-300 resize-none"></textarea>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit" id="form-submit"
+                                    class="btn-sweep bg-black text-white text-base font-bold px-10 py-4 rounded-full">
+                                Submit Application
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="form-success" class="hidden text-center bg-[#fdfdfd] rounded-3xl p-10 border border-gray-100 shadow-xl transition-all duration-500">
+                        <svg class="w-16 h-16 text-ferro-orange mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <h3 class="text-3xl font-bold text-black mb-4 tracking-tight">Application Received</h3>
+                        <p class="text-lg text-gray-500 font-medium">Thank you for your interest. Our team will review your details and be in touch within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ════════════════════════════════════════════════════════════
+             FOOTER
+        ════════════════════════════════════════════════════════════ -->
+        <footer id="contact" class="border-t border-gray-100 bg-white pt-20 md:pt-32 relative z-10 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 lg:px-16 w-full mb-16 md:mb-24">
+                <div class="flex flex-col md:flex-row justify-between gap-12 md:gap-8">
+                    <!-- Column 1: Brand -->
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl md:text-xl font-bold text-black mb-4">in a nutshell</h3>
+                        <p class="text-lg md:text-base text-gray-500 font-medium leading-relaxed max-w-sm">
+                            Highly selective account-based outbound for SaaS companies.
+                        </p>
+                    </div>
+                    <!-- Column 2: Connect -->
+                    <div class="md:w-1/2 flex flex-col md:items-end">
+                        <h4 class="text-sm md:text-xs uppercase tracking-widest text-gray-400 font-bold mb-6">Connect</h4>
+                        <div class="flex flex-col gap-3 items-start md:items-end">
+                            <a href="mailto:samarth@ferrohq.com" class="hover-underline text-base md:text-sm font-bold text-black">samarth@ferrohq.com</a>
+                            <a href="./privacy.html" class="hover-underline text-base md:text-sm font-bold text-black">Privacy Policy</a>
+                            <a href="./terms.html" class="hover-underline text-base md:text-sm font-bold text-black">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Giant "ferro" Typographic Element -->
+            <div class="w-full px-6 lg:px-16 flex justify-center pb-4 md:pb-8">
+                <p class="text-[clamp(5rem,25vw,25rem)] font-bold text-black select-none leading-[0.8] tracking-[-0.05em]" aria-hidden="true">ferro</p>
+            </div>
+            
+            <div class="border-t border-gray-100 px-6 lg:px-16 py-6 w-full bg-white relative z-10">
+                <p class="text-xs text-gray-400 font-medium text-center">&copy; 2026 Ferro HQ. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         JAVASCRIPT
+    ════════════════════════════════════════════════════════════ -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        /* ── MOBILE MENU ── */
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuBackdrop = document.getElementById('menu-backdrop');
+        const bar1 = document.getElementById('bar-1');
+        const bar2 = document.getElementById('bar-2');
+        let menuOpen = false;
+
+        function preventDefaultScroll(e) { e.preventDefault(); }
+
+        function openMobileMenu() {
+            menuOpen = true;
+            mobileMenu.classList.add('open');
+            if (menuBackdrop) {
+                menuBackdrop.style.opacity = '1';
+                menuBackdrop.style.pointerEvents = 'auto';
+            }
+            document.documentElement.classList.add('menu-open');
+            document.addEventListener('touchmove', preventDefaultScroll, { passive: false });
+            bar1.style.transform = 'rotate(45deg) translate(2px, 3px)';
+            bar2.style.transform = 'rotate(-45deg) translate(2px, -3px)';
+        }
+        function closeMobileMenu() {
+            menuOpen = false;
+            mobileMenu.classList.remove('open');
+            if (menuBackdrop) {
+                menuBackdrop.style.opacity = '0';
+                menuBackdrop.style.pointerEvents = 'none';
+            }
+            document.documentElement.classList.remove('menu-open');
+            document.removeEventListener('touchmove', preventDefaultScroll, { passive: false });
+            bar1.style.transform = '';
+            bar2.style.transform = '';
+        }
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuOpen ? closeMobileMenu() : openMobileMenu();
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        document.addEventListener('click', (e) => {
+            if (menuOpen && !mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+        // Handle resize: close menu if resized past mobile breakpoint
+        window.addEventListener('resize', () => {
+            if (menuOpen && window.innerWidth >= 768) {
+                closeMobileMenu();
+            }
+        });
+
+        /* ── INTERSECTION OBSERVERS ── */
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        const processNodes = document.querySelectorAll('.process-node');
+        const nodeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, { threshold: 0.8 });
+        processNodes.forEach(node => nodeObserver.observe(node));
+
+        /* ── CURVE ANIMATION ── */
+        const curveSVGs = document.querySelectorAll('.curve-svg');
+        curveSVGs.forEach(svg => {
+            const path = svg.querySelector('.curve-path');
+            if (path) {
+                // Bypass getTotalLength bugs for reliable cross-device rendering
+                path.setAttribute('pathLength', '100');
+                path.style.strokeDasharray = '100';
+                path.style.strokeDashoffset = '100';
+            }
+        });
+
+        function updateCurveDrawing() {
+            const vh = window.innerHeight;
+            curveSVGs.forEach(svg => {
+                const path = svg.querySelector('.curve-path');
+                if (!path) return;
+                const rect = svg.getBoundingClientRect();
+                const drawStart = vh * 0.85;
+                const drawEnd = vh * 0.25;
+                const progress = Math.max(0, Math.min(1, (drawStart - rect.top) / (drawStart - drawEnd)));
+                path.style.strokeDashoffset = 100 * (1 - progress);
+            });
+        }
+        let scrollTicking = false;
+        window.addEventListener('scroll', () => {
+            if (!scrollTicking) {
+                window.requestAnimationFrame(() => {
+                    updateCurveDrawing();
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
+            }
+        }, { passive: true });
+        updateCurveDrawing();
+
+        /* ── INTERACTIVE BACKGROUND SYSTEMS ── */
+        const glowBg = document.getElementById('glowBg');
+        const gridBg = document.getElementById('gridBg');
+        
+        let tx = 0, ty = 0, cx = 0, cy = 0;
+        let gx = 50, gy = 50, cgx = 50, cgy = 50;
+        let rafId = null;
+        
+        if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            let mouseTicking = false;
+            window.addEventListener('mousemove', function(e) {
+                if (!mouseTicking) {
+                    window.requestAnimationFrame(() => {
+                        let nx = e.clientX / window.innerWidth - 0.5;
+                        let ny = e.clientY / window.innerHeight - 0.5;
+                        tx = nx * 36;
+                        ty = ny * 28;
+                        gx = (e.clientX / window.innerWidth) * 100;
+                        gy = (e.clientY / window.innerHeight) * 100;
+                        mouseTicking = false;
+                    });
+                    mouseTicking = true;
+                }
+            }, { passive: true });
+
+            function loopAnimations() {
+                cx += (tx - cx) * 0.06;
+                cy += (ty - cy) * 0.06;
+                cgx += (gx - cgx) * 0.08;
+                cgy += (gy - cgy) * 0.08;
+                
+                if (gridBg) gridBg.style.transform = `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0)`;
+                
+                if (glowBg) {
+                    glowBg.style.setProperty('--gx', cgx.toFixed(2) + '%');
+                    glowBg.style.setProperty('--gy', cgy.toFixed(2) + '%');
+                }
+                rafId = requestAnimationFrame(loopAnimations);
+            }
+            loopAnimations();
+        }
+
+        const sketchElements = document.querySelectorAll('.sketch-trigger');
+        
+        sketchElements.forEach(el => {
+            const paths = el.querySelectorAll('path');
+            paths.forEach(p => {
+                // Bulletproof SVG drawing: use pathLength="100" to bypass all browser rounding bugs
+                p.setAttribute('pathLength', '100');
+                p.style.strokeDasharray = '100 200';
+                p.style.strokeDashoffset = '100';
+                p.style.transition = 'none';
+            });
+            // Mark as ready so visibility kicks in via CSS
+            el.classList.add('ready');
+        });
+
+        const sketchObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const paths = entry.target.querySelectorAll('path');
+                    setTimeout(() => {
+                        paths.forEach((p, index) => {
+                            const delay = parseFloat(entry.target.style.getPropertyValue('--sd') || '0');
+                            p.style.transition = `stroke-dashoffset 1.6s cubic-bezier(0.22, 1, 0.36, 1) ${delay + (index * 0.35)}s`;
+                            p.style.strokeDashoffset = '0';
+                        });
+                    }, 80);
+                    sketchObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+        
+        sketchElements.forEach(el => sketchObserver.observe(el));
+
+        /* ── AJAX FORM SUBMISSION ── */
+        const auditForm = document.getElementById('audit-form');
+        const formSubmit = document.getElementById('form-submit');
+
+        if (auditForm) {
+            auditForm.addEventListener('submit', function (e) {
+                e.preventDefault(); 
+                
+                formSubmit.textContent = 'Submitting...';
+                formSubmit.classList.remove('bg-black');
+                formSubmit.classList.add('bg-gray-400', 'cursor-wait');
+                formSubmit.disabled = true;
+
+                const formData = new FormData(auditForm);
+
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(async (response) => {
+                    if (response.status == 200) {
+                        auditForm.style.opacity = '0';
+                        auditForm.style.pointerEvents = 'none';
+                        setTimeout(() => {
+                            auditForm.style.display = 'none';
+                            const successMsg = document.getElementById('form-success');
+                            successMsg.classList.remove('hidden');
+                        }, 300);
+                    } else {
+                        formSubmit.textContent = 'Error. Try again.';
+                        formSubmit.classList.remove('bg-gray-400', 'cursor-wait');
+                        formSubmit.classList.add('bg-red-600');
+                        formSubmit.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    formSubmit.textContent = 'Error. Try again.';
+                    formSubmit.classList.remove('bg-gray-400', 'cursor-wait');
+                    formSubmit.classList.add('bg-red-600');
+                    formSubmit.disabled = false;
+                });
+            });
+        }
+        
+        /* ── GUARANTEE ONE-TIME SNAP ── */
+        const theGuaranteeSection = document.getElementById('guarantee');
+        let hasSnappedGuarantee = false;
+        let snapTimer = null;
+
+        if (theGuaranteeSection) {
+            const snapObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasSnappedGuarantee) {
+                        // Pause briefly to ensure the user intentionally stopped here
+                        snapTimer = setTimeout(() => {
+                            if (!hasSnappedGuarantee) {
+                                hasSnappedGuarantee = true;
+                                theGuaranteeSection.scrollIntoView({ behavior: 'smooth' });
+                                snapObserver.unobserve(theGuaranteeSection);
+                            }
+                        }, 250); 
+                    } else {
+                        clearTimeout(snapTimer);
+                    }
+                });
+            }, { threshold: 0.5 }); // Require 50% visibility to trigger
+            
+            snapObserver.observe(theGuaranteeSection);
+        }
+
+    });
+    </script>
+</body>
+</html>
