@@ -12,6 +12,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 
+    <!-- Calendly link widget begin -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <!-- Calendly link widget end -->
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -257,7 +262,7 @@
 
                 <!-- CTA -->
                 <div class="hidden md:flex flex-1 justify-end items-center">
-                    <a href="#book-audit" class="nav-link bg-black text-white text-sm font-bold px-8 py-3.5 rounded-full transition-transform duration-300 ease-out hover:scale-[1.03]" id="nav-cta">
+                    <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ferro-intro-call/30min'});return false;" class="nav-link bg-black text-white text-sm font-bold px-8 py-3.5 rounded-full transition-transform duration-300 ease-out hover:scale-[1.03]" id="nav-cta">
                         Book an Audit
                     </a>
                 </div>
@@ -281,7 +286,7 @@
                 <a href="#about" class="mobile-link text-lg font-extrabold text-black hover-underline">About</a>
                 <a href="#process" class="mobile-link text-lg font-extrabold text-black hover-underline">Process</a>
                 <a href="#guarantee" class="mobile-link text-lg font-extrabold text-black hover-underline">Guarantee</a>
-                <a href="#book-audit" class="mobile-link btn-sweep bg-black text-white text-base font-bold px-8 py-3.5 rounded-full text-center mt-2 w-full">Book an Audit</a>
+                <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ferro-intro-call/30min'});return false;" class="mobile-link btn-sweep bg-black text-white text-base font-bold px-8 py-3.5 rounded-full text-center mt-2 w-full">Book an Audit</a>
             </div>
         </div>
 
@@ -301,7 +306,7 @@
                     <a href="#process" class="btn-sweep px-8 py-3.5 rounded-full text-black text-sm font-bold bg-white/20 backdrop-blur-md w-full sm:w-auto text-center" style="--sweep-bg: #000; --sweep-text: #fff; --sweep-border: #000;">
                         See The Process
                     </a>
-                    <a href="#book-audit" class="btn-sweep px-8 py-3.5 rounded-full bg-black text-white text-sm font-bold w-full sm:w-auto text-center">
+                    <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ferro-intro-call/30min'});return false;" class="btn-sweep px-8 py-3.5 rounded-full bg-black text-white text-sm font-bold w-full sm:w-auto text-center">
                         Book an Audit
                     </a>
                 </div>
@@ -412,56 +417,14 @@
                     <h2 class="reveal text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tightest mb-6">
                         <span class="sketch-container text-ferro-orange sketch-trigger" style="--sd: 0.1s; padding: 0 0.3em;">Book an Audit<svg class="absolute pointer-events-none" style="top: -18%; left: -6%; width: 112%; height: 140%; stroke: currentColor; fill: none; overflow: visible;" viewBox="0 0 540 100" preserveAspectRatio="none"><path stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M274 9 C384 5 504 20 510 47 C517 75 411 94 272 94 C137 94 27 79 24 51 C22 24 132 9 265 8 C299 7.7 333 9 362 12"/></svg></span>
                     </h2>
-                    <p class="reveal text-lg md:text-xl text-gray-500 font-medium mb-14" style="transition-delay: 0.1s;">
-                        Tell us your ICP, your current pipeline situation, and your revenue target. We'll respond within 24 hours with a straight assessment of whether we're the right fit.
+                    <p class="reveal text-lg md:text-xl text-gray-500 font-medium mb-10" style="transition-delay: 0.1s;">
+                        We'll discuss your current pipeline situation, your revenue targets, and exactly how we can build an outbound motion that generates qualified sales meetings for your team.
                     </p>
 
-                    <form id="audit-form" class="reveal space-y-10" style="transition-delay: 0.15s;">
-                        <input type="hidden" name="access_key" value="113f0311-64c1-4168-8a9c-f8abb0c50362">
-
-                        <div>
-                            <label for="form-name" class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Full Name</label>
-                            <input type="text" id="form-name" name="name" required placeholder="Jane Smith"
-                                   class="w-full bg-transparent border-b border-gray-200 py-3 text-lg font-bold text-black placeholder-gray-300 focus:outline-none focus:border-ferro-orange transition-colors duration-300">
-                        </div>
-
-                        <div>
-                            <label for="form-email" class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Work Email</label>
-                            <input type="email" id="form-email" name="email" required placeholder="jane@company.com"
-                                   class="w-full bg-transparent border-b border-gray-200 py-3 text-lg font-bold text-black placeholder-gray-300 focus:outline-none focus:border-ferro-orange transition-colors duration-300">
-                        </div>
-
-                        <div>
-                            <label for="form-company" class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Company</label>
-                            <input type="text" id="form-company" name="company" required placeholder="Acme Inc."
-                                   class="w-full bg-transparent border-b border-gray-200 py-3 text-lg font-bold text-black placeholder-gray-300 focus:outline-none focus:border-ferro-orange transition-colors duration-300">
-                        </div>
-
-                        <div>
-                            <label for="form-website" class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Website</label>
-                            <input type="text" inputmode="url" id="form-website" name="website" placeholder="company.com"
-                                   class="w-full bg-transparent border-b border-gray-200 py-3 text-lg font-bold text-black placeholder-gray-300 focus:outline-none focus:border-ferro-orange transition-colors duration-300">
-                        </div>
-
-                        <div>
-                            <label for="form-message" class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Tell us about your ICP, current pipeline, and revenue target</label>
-                            <textarea id="form-message" name="message" rows="3" required placeholder="We sell to VP-level buyers at Series B+ SaaS companies…"
-                                      class="w-full bg-transparent border-b border-gray-200 py-3 text-lg font-bold text-black placeholder-gray-300 focus:outline-none focus:border-ferro-orange transition-colors duration-300 resize-none"></textarea>
-                        </div>
-
-                        <div class="pt-4">
-                            <button type="submit" id="form-submit"
-                                    class="btn-sweep bg-black text-white text-base font-bold px-10 py-4 rounded-full">
-                                Submit Application
-                            </button>
-                        </div>
-                    </form>
-                    
-                    <!-- Success Message (Hidden by default) -->
-                    <div id="form-success" class="hidden text-center bg-[#fdfdfd] rounded-3xl p-10 border border-gray-100 shadow-xl transition-all duration-500">
-                        <svg class="w-16 h-16 text-ferro-orange mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <h3 class="text-3xl font-bold text-black mb-4 tracking-tight">Application Received</h3>
-                        <p class="text-lg text-gray-500 font-medium">Thank you for your interest. Our team will review your details and be in touch within 24 hours.</p>
+                    <div class="reveal" style="transition-delay: 0.15s;">
+                        <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ferro-intro-call/30min'});return false;" class="inline-block btn-sweep bg-black text-white text-lg font-bold px-10 py-5 rounded-full text-center transition-transform duration-300 ease-out hover:scale-[1.03]">
+                            Check Availability &rarr;
+                        </a>
                     </div>
                 </div>
             </div>
@@ -699,48 +662,7 @@
         sketchElements.forEach(el => sketchObserver.observe(el));
 
         /* ── AJAX FORM SUBMISSION ── */
-        const auditForm = document.getElementById('audit-form');
-        const formSubmit = document.getElementById('form-submit');
-
-        if (auditForm) {
-            auditForm.addEventListener('submit', function (e) {
-                e.preventDefault(); 
-                
-                formSubmit.textContent = 'Submitting...';
-                formSubmit.classList.remove('bg-black');
-                formSubmit.classList.add('bg-gray-400', 'cursor-wait');
-                formSubmit.disabled = true;
-
-                const formData = new FormData(auditForm);
-
-                fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(async (response) => {
-                    if (response.status == 200) {
-                        auditForm.style.opacity = '0';
-                        auditForm.style.pointerEvents = 'none';
-                        setTimeout(() => {
-                            auditForm.style.display = 'none';
-                            const successMsg = document.getElementById('form-success');
-                            successMsg.classList.remove('hidden');
-                        }, 300);
-                    } else {
-                        formSubmit.textContent = 'Error. Try again.';
-                        formSubmit.classList.remove('bg-gray-400', 'cursor-wait');
-                        formSubmit.classList.add('bg-red-600');
-                        formSubmit.disabled = false;
-                    }
-                })
-                .catch(error => {
-                    formSubmit.textContent = 'Error. Try again.';
-                    formSubmit.classList.remove('bg-gray-400', 'cursor-wait');
-                    formSubmit.classList.add('bg-red-600');
-                    formSubmit.disabled = false;
-                });
-            });
-        }
+        // Replaced with Calendly Popup Widget
         
         /* ── GUARANTEE ONE-TIME SNAP ── */
         const theGuaranteeSection = document.getElementById('guarantee');
