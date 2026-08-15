@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ferro — Highly Selective Account-Based Outbound for SaaS</title>
-    <meta name="description" content="Ferro runs research-driven, 1-on-1 outbound campaigns that put high-intent prospects directly on your calendar.">
+    <title>Ferro</title>
+    <meta name="description" content="Ferro runs research-driven, 1-on-1 outbound campaigns that put security and compliance decision-makers directly on your calendar.">
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <!-- Google Fonts: DM Sans -->
@@ -48,6 +48,10 @@
             font-family: 'DM Sans', system-ui, sans-serif;
             background-color: #fdfdfd;
             scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+        section, footer {
+            scroll-snap-align: start;
         }
         body {
             margin: 0;
@@ -263,7 +267,7 @@
                 <!-- CTA -->
                 <div class="hidden md:flex flex-1 justify-end items-center">
                     <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ferro-intro-call/30min'});return false;" class="nav-link bg-black text-white text-sm font-bold px-8 py-3.5 rounded-full transition-transform duration-300 ease-out hover:scale-[1.03]" id="nav-cta">
-                        Book an Audit
+                        Book a Call
                     </a>
                 </div>
 
@@ -286,7 +290,7 @@
                 <a href="#about" class="mobile-link text-lg font-extrabold text-black hover-underline">About</a>
                 <a href="#process" class="mobile-link text-lg font-extrabold text-black hover-underline">Process</a>
                 <a href="#guarantee" class="mobile-link text-lg font-extrabold text-black hover-underline">Guarantee</a>
-                <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ferro-intro-call/30min'});return false;" class="mobile-link btn-sweep bg-black text-white text-base font-bold px-8 py-3.5 rounded-full text-center mt-2 w-full">Book an Audit</a>
+                <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ferro-intro-call/30min'});return false;" class="mobile-link btn-sweep bg-black text-white text-base font-bold px-8 py-3.5 rounded-full text-center mt-2 w-full">Book a Call</a>
             </div>
         </div>
 
@@ -297,17 +301,17 @@
 
             <div class="max-w-5xl mx-auto text-center w-full relative z-10">
                 <h1 class="reveal text-[clamp(1.8rem,7.5vw,2.75rem)] sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-hero mb-8 md:mb-10 text-transparent bg-clip-text bg-gradient-to-b from-black to-gray-800">
-                    <span class="whitespace-nowrap">You want <span class="sketch-container text-ferro-orange sketch-trigger" style="--sd: 0.2s; padding: 0 0.15em;">pipeline<svg class="absolute pointer-events-none" style="top: -15%; left: -2%; width: 104%; height: 130%; stroke: currentColor; fill: none; overflow: visible;" viewBox="0 0 240 100" preserveAspectRatio="none"><path stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M122 9 C171 5 224 20 227 47 C230 75 183 94 121 94 C61 94 12 79 11 51 C10 24 59 9 118 8 C133 7.7 148 9 161 12"/></svg></span>.</span><br/>We build it.
+                    <span class="whitespace-nowrap">You need <span class="sketch-container text-ferro-orange sketch-trigger" style="--sd: 0.2s; padding: 0 0.15em;">pipeline<svg class="absolute pointer-events-none" style="top: -15%; left: -2%; width: 104%; height: 130%; stroke: currentColor; fill: none; overflow: visible;" viewBox="0 0 240 100" preserveAspectRatio="none"><path stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M122 9 C171 5 224 20 227 47 C230 75 183 94 121 94 C61 94 12 79 11 51 C10 24 59 9 118 8 C133 7.7 148 9 161 12"/></svg></span>.</span><br/>We build it.
                 </h1>
                 <p class="reveal text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium leading-[1.15] tracking-tight text-gray-500 mb-12 md:mb-14" style="transition-delay: 0.1s;">
-                    We curate conversations with your most valuable buyers.
+                    We put security and compliance decision-makers directly on your calendar — without burning your domain or your reputation.
                 </p>
                 <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4" style="transition-delay: 0.2s;">
                     <a href="#process" class="btn-sweep px-8 py-3.5 rounded-full text-black text-sm font-bold bg-white/20 backdrop-blur-md w-full sm:w-auto text-center" style="--sweep-bg: #000; --sweep-text: #fff; --sweep-border: #000;">
                         See The Process
                     </a>
                     <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ferro-intro-call/30min'});return false;" class="btn-sweep px-8 py-3.5 rounded-full bg-black text-white text-sm font-bold w-full sm:w-auto text-center">
-                        Book an Audit
+                        Book a Call
                     </a>
                 </div>
             </div>
@@ -321,7 +325,7 @@
             <div class="max-w-6xl mx-auto w-full">
                 <div class="max-w-4xl mx-auto text-center">
                     <h2 class="reveal text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tightest mb-10 md:mb-14">
-                        We run <span class="sketch-container sketch-trigger" style="--sd: 0.1s;">research-driven<!-- Properly positioned underline sitting below the text baseline --><svg class="absolute pointer-events-none bottom-[-11px] md:bottom-[-8px]" style="left: 0; width: 100%; height: 24px; stroke: var(--ferro-orange, #ff4d12); fill: none;" viewBox="0 0 200 40" preserveAspectRatio="none"><path stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 5 20 Q 100 8 195 24"/><path stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity="0.6" d="M 15 28 Q 100 16 185 26"/></svg></span>, 1-on-1 outbound campaigns that put high-intent prospects directly on your calendar.
+                        We run <span class="sketch-container sketch-trigger" style="--sd: 0.1s;">research-driven<!-- Properly positioned underline sitting below the text baseline --><svg class="absolute pointer-events-none bottom-[-11px] md:bottom-[-8px]" style="left: 0; width: 100%; height: 24px; stroke: var(--ferro-orange, #ff4d12); fill: none;" viewBox="0 0 200 40" preserveAspectRatio="none"><path stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 5 20 Q 100 8 195 24"/><path stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity="0.6" d="M 15 28 Q 100 16 185 26"/></svg></span>, 1-on-1 outbound campaigns that get replies from the buyers who actually sign the contract.
                     </h2>
                     <div class="reveal flex flex-col sm:flex-row items-center justify-center sm:gap-10" style="transition-delay: 0.15s;">
                         <p class="text-xl md:text-2xl text-gray-500 font-bold leading-relaxed">No automated spam.</p>
@@ -340,10 +344,10 @@
 
                 <div class="md:w-5/12 reveal">
                     <div class="process-node mb-6" data-node="0"></div>
-                    <h3 class="text-xl md:text-3xl font-bold tracking-tight mb-4">Precision Intelligence, Not Bulk Scraping.</h3>
+                    <h3 class="text-xl md:text-3xl font-bold tracking-tight mb-4">Precision Targeting, Not Bulk Scraping.</h3>
                     <p class="text-base md:text-lg text-gray-500 leading-relaxed font-medium">
-                        No scraped lists.<br>
-                        We identify target accounts using recent funding rounds, hiring signals, and verified tech-stack data.<br>
+                        No purchased lists.<br>
+                        We identify accounts using signals that matter — new CISO hires, recent funding, security audits in progress, compliance framework announcements, and verified tech-stack data.<br>
                         Every account is hand-selected against your ICP.
                     </p>
                 </div>
@@ -359,10 +363,11 @@
 
                 <div class="md:w-5/12 md:ml-auto md:text-right reveal">
                     <div class="process-node mb-6 md:ml-auto" data-node="1"></div>
-                    <h3 class="text-xl md:text-3xl font-bold tracking-tight mb-4">Bespoke Copywriting</h3>
+                    <h3 class="text-xl md:text-3xl font-bold tracking-tight mb-4">Copy That Sounds Like a Peer.</h3>
                     <p class="text-base md:text-lg text-gray-500 leading-relaxed font-medium">
-                        Every first-touch message references a real, company-specific trigger — a new hire, a product launch, a funding event.<br>
-                        We write as a peer, not a pitch deck. Replies come from relevance, not volume.
+                        Security and compliance buyers can smell a template in three seconds.<br>
+                        Every first-touch message references a real, company-specific trigger and speaks the language your buyers actually use.<br>
+                        Replies come from relevance, not volume.
                     </p>
                 </div>
 
@@ -377,10 +382,10 @@
 
                 <div class="md:w-5/12 reveal">
                     <div class="process-node mb-6" data-node="2"></div>
-                    <h3 class="text-xl md:text-3xl font-bold tracking-tight mb-4">Flawless Deliverability</h3>
+                    <h3 class="text-xl md:text-3xl font-bold tracking-tight mb-4">Deliverability, Handled.</h3>
                     <p class="text-base md:text-lg text-gray-500 leading-relaxed font-medium">
-                        We build and manage a separate sending stack for your campaign.<br>
-                        Your primary domain stays clean. Our emails land in the primary inbox or they don't go out.
+                        We build and manage a completely separate sending infrastructure for your campaign.<br>
+                        Your primary domain stays clean. Our emails land in the primary inbox — or they don't go out.
                     </p>
                 </div>
 
@@ -399,7 +404,7 @@
                         The <span class="sketch-container text-ferro-orange sketch-trigger" style="--sd: 0.1s;">Commitment<svg class="absolute pointer-events-none" style="bottom: -12px; left: -2%; width: 104%; height: 24px; stroke: currentColor; fill: none;" viewBox="0 0 200 40" preserveAspectRatio="none"><path stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M 5 20 Q 100 5 195 25"/><path stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity="0.6" d="M 10 30 Q 100 15 185 28"/></svg></span>
                     </h2>
                     <p class="reveal text-xl md:text-2xl text-gray-300 font-medium leading-relaxed" style="transition-delay: 0.1s;">
-                        We partner exclusively with SaaS companies that have a validated product and a defined ICP. Because we control every variable — targeting, copy, infrastructure, and follow-up cadence — we back our work with a strict focus on outcomes. We book qualified meetings for B2B teams; specific targets and remedies, if any, are defined in your written agreement.
+                        We partner exclusively with companies that have a validated product and a defined ICP. Because we control every variable — targeting, copy, infrastructure, and cadence — we back our work with a focus on outcomes, not activity. We book qualified meetings with decision-makers who match your ICP. Specific targets and remedies are defined in your written agreement.
                     </p>
                 </div>
             </div>
@@ -415,10 +420,10 @@
                 <div class="max-w-2xl">
 
                     <h2 class="reveal text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tightest mb-6">
-                        <span class="sketch-container text-ferro-orange sketch-trigger" style="--sd: 0.1s; padding: 0 0.3em;">Book an Audit<svg class="absolute pointer-events-none" style="top: -18%; left: -6%; width: 112%; height: 140%; stroke: currentColor; fill: none; overflow: visible;" viewBox="0 0 540 100" preserveAspectRatio="none"><path stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M274 9 C384 5 504 20 510 47 C517 75 411 94 272 94 C137 94 27 79 24 51 C22 24 132 9 265 8 C299 7.7 333 9 362 12"/></svg></span>
+                        <span class="sketch-container text-ferro-orange sketch-trigger" style="--sd: 0.1s; padding: 0 0.3em;">Let's Talk<svg class="absolute pointer-events-none" style="top: -18%; left: -6%; width: 112%; height: 140%; stroke: currentColor; fill: none; overflow: visible;" viewBox="0 0 540 100" preserveAspectRatio="none"><path stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M274 9 C384 5 504 20 510 47 C517 75 411 94 272 94 C137 94 27 79 24 51 C22 24 132 9 265 8 C299 7.7 333 9 362 12"/></svg></span>
                     </h2>
                     <p class="reveal text-lg md:text-xl text-gray-500 font-medium mb-10" style="transition-delay: 0.1s;">
-                        We'll discuss your current pipeline situation, your revenue targets, and exactly how we can build an outbound motion that generates qualified sales meetings for your team.
+                        A 30-minute call where we'll pressure-test your current outbound motion — ICP, targeting, messaging, deliverability, and cadence — and show you exactly where the leaks are. No pitch unless it makes sense for both of us.
                     </p>
 
                     <div class="reveal" style="transition-delay: 0.15s;">
@@ -441,7 +446,7 @@
                     <div class="md:w-1/2">
                         <h3 class="text-2xl md:text-xl font-bold text-black mb-4">in a nutshell</h3>
                         <p class="text-lg md:text-base text-gray-500 font-medium leading-relaxed max-w-sm">
-                            we do account-based outbound for SaaS companies that are done with spray-and-pray.
+                            we run account-based outbound for B2B SaaS companies that are done with spray-and-pray.
                         </p>
                     </div>
                     <!-- Column 2: Connect -->
@@ -449,8 +454,8 @@
                         <h4 class="text-sm md:text-xs uppercase tracking-widest text-black font-extrabold mb-2">Connect</h4>
                         <div class="flex flex-col gap-3 items-start md:items-end">
                             <a href="mailto:hello@ferrohq.com" class="hover-underline text-base md:text-sm font-medium text-black mb-3">hello@ferrohq.com</a>
-                            <a href="./privacy.html" class="hover-underline text-base md:text-sm font-bold text-black">Privacy Policy</a>
-                            <a href="./terms.html" class="hover-underline text-base md:text-sm font-bold text-black">Terms of Service</a>
+                            <a href="/privacy/" class="hover-underline text-base md:text-sm font-bold text-black">Privacy Policy</a>
+                            <a href="/terms/" class="hover-underline text-base md:text-sm font-bold text-black">Terms of Service</a>
                         </div>
                     </div>
                 </div>
